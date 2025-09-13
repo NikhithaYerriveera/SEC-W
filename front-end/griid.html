@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration Form</title>
+  <style>
+    .body {
+      font-family: Arial, sans-serif;
+      background-color: #23d1dd;
+      margin: 0;
+      padding: 100px;
+    }
+
+    .form-container {
+      max-width: 500px;
+      margin: auto;
+      background: rgb(28, 142, 167);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: grid;
+      gap: 1px;
+    }
+    .form-container h2 {
+      text-align: center;
+      color: #1d2020;
+      margin-bottom: 2px;
+    }
+
+    .form-group {
+      display: grid;
+      grid-template-columns: 0.2fr 1fr;
+      align-items: center;
+      gap: 5px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      padding: 8px;
+      border: 1px solid #2c3030;
+      border-radius: 6px;
+      width: 100%;
+    }
+
+    .form-group-inline {
+      display: flex;
+      gap: 10px;
+    }
+
+    .form-group-inline label {
+      font-weight: normal;
+    }
+
+    .submit-btn {
+      grid-column: span 2;
+      padding: 10px;
+      background: #2d89ef;
+      color: white;
+      border: none;
+      border-radius: 18px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .submit-btn:hover {
+      background: #1a5fbd;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Student Registration Form</h2>
+    <form>
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label>Gender:</label>
+        <div class="form-group-inline">
+          <label><input type="radio" name="gender" value="male"> Male</label>
+          <label><input type="radio" name="gender" value="female"> Female</label>
+          <label><input type="radio" name="gender" value="other"> Other</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Hobbies:</label>
+        <div class="form-group-inline">
+          <label><input type="checkbox" name="hobby" value="reading"> Reading</label>
+          <label><input type="checkbox" name="hobby" value="sports"> Sports</label>
+          <label><input type="checkbox" name="hobby" value="music"> Music</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+
+      <button type="submit" class="submit-btn">Register</button>
+    </form>
+  </div>
+
+</body>
+</html>

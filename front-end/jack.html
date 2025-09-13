@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do List</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #8499b4, #5e5c5d);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: rgb(222, 226, 230);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+      width: 350px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    form {
+      display: flex;
+      margin-bottom: 20px;
+    }
+    input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      outline: none;
+      transition: 0.3s;
+    }
+    input[type="text"]:focus {
+      border-color: #4facfe;
+    }
+    button {
+      background: #4facfe;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      margin-left: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #e4a8c5;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btns button {
+      margin-left: 5px;
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 6px;
+    }
+    .done {
+      background: #28a745;
+    }
+    .done:hover {
+      background: #218838;
+    }
+    .deleteBtn {
+      background: #dc3545;
+    }
+    .deleteBtn:hover {
+      background: #c82333;
+    }
+    .completed {
+      text-decoration: line-through;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>To Do List</h2>
+    <form id="todoForm">
+      <input type="text" id="taskInput" placeholder="Enter a task">
+      <button type="submit">Add</button>
+    </form>
+    <ul id="taskList"></ul>
+  </div>
+  <script>
+    $(document).ready(function() {
+      $("#todoForm").on("submit", function(e) {
+        e.preventDefault();
+        let task = $("#taskInput").val();
+        if (task) {
+          $("#taskList").append(
+            `<li>
+              <span class="taskText">${task}</span>
+              <div class="btns">
+                <button class="done">Done</button>
+                <button class="deleteBtn">Delete</button>
+              </div>
+            </li>`
+          );
+          $("#taskInput").val("");
+        }
+      });
+      $("#taskList").on("click", ".deleteBtn", function() {
+        $(this).closest("li").remove();
+      });
+      $("#taskList").on("click", ".done", function() {
+        $(this).closest("li").find(".taskText").toggleClass("completed");
+      });
+    });
+  </script>
+</body>
+</html>
+
