@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery Interaction Demo</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>Hello jQuery</h2>
+  <h3>Just for timepass</h3>
+  <button id="btn">Click Me</button>
+  <div class="temp">
+    <p>This is a different division on which we are using the class tags using jQuery</p>
+  </div>
+  <input type="text" id="myInput" placeholder="Type something...">
+  <p id="output">Hi this text</p>
+  <ul id="list">
+    <li>Item 1</li>
+  </ul>
+  <button id="add">Add Item</button>
+  <button id="addf">Add Item First</button>
+  <button id="remove">Remove First</button>
+  <script>
+    $(document).ready(function () {
+      // Single click
+      $("#btn").click(function () {
+        $("h2").text("Button Clicked!");
+        $("h3").text("Button Clicked! Duplicate");
+        $(".temp").css("background-color", "yellow");
+        $(".temp p").css("font-weight", "bold");
+      });
+      $("#btn").dblclick(function () {
+        $("h2").text("Button Clicked Twice!");
+        $("h3").text("Button Clicked! Twice Duplicate");
+        $(".temp").css("background-color", "orange");
+        $(".temp p").css("font-family", "Calibri");
+      });
+      $("#btn").hover(function () {
+        $("h2").text("Button Hovered!");
+        $("h3").text("Button and Hovered! Duplicate");
+        $(".temp").css("background-color", "cyan");
+        $(".temp p").css("font-style", "italic");
+      });
+      $("#add").click(function () {
+        $("#list").append("<li>New Item appended from script</li>");
+      });
+      $("#addf").click(function () {
+        $("#list").prepend("<li>New Item prepended from script</li>");
+      });
+      $("#remove").click(function () {
+        $("#list li:first").remove();
+      });
+      $("#myInput").on("input", function () {
+        let val = $(this).val();
+        $("#output").text(val);
+      });
+    });
+  </script>
+</body>
+</html>
