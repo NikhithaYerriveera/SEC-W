@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do List Application</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 30px;
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    #taskInput {
+      width: 70%;
+      padding: 10px;
+      font-size: 16px;
+    }
+    #addTaskBtn {
+      padding: 10px 15px;
+      font-size: 16px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #addTaskBtn:hover {
+      background-color: #218838;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+    li {
+      background-color: #fff;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .completed {
+      text-decoration: line-through;
+      color: #888;
+    }
+    .task-buttons button {
+      margin-left: 5px;
+      padding: 5px 10px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .completeBtn {
+      background-color: #007bff;
+      color: white;
+    }
+    .completeBtn:hover {
+      background-color: #0056b3;
+    }
+    .deleteBtn {
+      background-color: #dc3545;
+      color: white;
+    }
+    .deleteBtn:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+<body>
+  <h1>To-Do List</h1>
+  <input type="text" id="taskInput" placeholder="Enter a new task">
+  <button id="addTaskBtn">Add Task</button>
+  <ul id="taskList"></ul>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#addTaskBtn').click(function () {
+        const taskText = $('#taskInput').val().trim();
+        if (taskText !== '') {
+          const taskItem = `
+            <li>
+              <span class="task-text">${taskText}</span>
+              <div class="task-buttons">
+                <button class="completeBtn">Complete</button>
+                <button class="deleteBtn">Delete</button>
+              </div>
+            </li>`;
+          $('#taskList').append(taskItem);
+          $('#taskInput').val('');
+        }
+      });
+      $('#taskList').on('click', '.completeBtn', function () {
+        $(this).closest('li').find('.task-text').toggleClass('completed');
+      });
+      $('#taskList').on('click', '.deleteBtn', function () {
+        $(this).closest('li').remove();
+      });
+    });
+  </script>
+</body>
+</html>

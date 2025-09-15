@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Editable To-Do List</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    /* --- Attractive CSS --- */
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .todo-container {
+      background: #fff;
+      padding: 25px;
+      border-radius: 15px;
+      width: 400px;
+      box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      background: #f1f1f1;
+      margin: 10px 0;
+      padding: 12px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    li:hover {
+      background: #e0e0e0;
+    }
+    li input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 2px solid #4facfe;
+      font-size: 15px;
+      outline: none;
+    }
+    .add-task {
+      display: flex;
+      margin-top: 20px;
+    }
+    .add-task input {
+      flex: 1;
+      padding: 12px;
+      border-radius: 10px;
+      border: 2px solid #4facfe;
+      outline: none;
+    }
+    .add-task button {
+      padding: 12px 18px;
+      border: none;
+      background: #4facfe;
+      color: #fff;
+      border-radius: 10px;
+      margin-left: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+    .add-task button:hover {
+      background: #00c6ff;
+    }
+  </style>
+</head>
+<body>
+<div class="todo-container">
+  <h2>Editable To-Do List</h2>
+  <ul id="task-list">
+    <li>Learn JavaScript</li>
+    <li>Practice JSON</li>
+    <li>Master jQuery</li>
+  </ul>
+  <div class="add-task">
+    <input type="text" id="new-task" placeholder="Add new task...">
+    <button id="add-btn">Add</button>
+  </div>
+</div>
+<script>
+$(document).ready(function() {
+  // Add new task
+  $("#add-btn").click(function() {
+    let taskText = $("#new-task").val().trim();
+    if (taskText !== "") {
+      $("#task-list").append("<li>" + taskText + "</li>");
+      $("#new-task").val("");
+    }
+  });
+  $(document).on("dblclick", "li", function() {
+    let currentText = $(this).text();
+    let inputBox = $("<input type='text'>").val(currentText);
+    $(this).html(inputBox);
+    inputBox.focus();
+    inputBox.keydown(function(e) {
+      if (e.key === "Enter") {
+        let updatedText = $(this).val().trim();
+        $(this).parent().text(updatedText || currentText);
+      }
+    });
+    inputBox.blur(function() {
+      let updatedText = $(this).val().trim();
+      $(this).parent().text(updatedText || currentText);
+    });
+  });
+});
+</script>
+</body>
+</html>
